@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import axios from "axios";
 
-class App extends React.Component() {
+class App extends React.Component {
   state = {
     github: []
   }
@@ -23,7 +23,7 @@ class App extends React.Component() {
   render() {
     return (
       <div className="App">
-
+        <h3>hello?</h3>
       </div>
     );
 
