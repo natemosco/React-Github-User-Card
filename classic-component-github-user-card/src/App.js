@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
 import axios from "axios";
+import UserCard from "./components/UserList";
 
 class App extends React.Component {
   state = {
-    github: []
+    myGithubData: [],
+    followerData: []
   }
 
   componentDidMount() {
@@ -12,9 +14,23 @@ class App extends React.Component {
       .get(' https://api.github.com/users/natemosco')
       .then(res => {
         console.log(res, "res from initial axios request")
-        // this.setState({
-        // github:[res.data]
-        // })
+        this.setState({
+          myGithubData: [res.data]
+        });
+        axios
+          .get(res.data.followers_url)
+          .then(res => {
+            console.log("followersURL response", res)
+            this.setState({
+              followerData: [res.data]
+            });
+          })
+          .catch(err => {
+            console.log("error from followersURL", err)
+          })
+      })
+      .catch(err => {
+        console.log(err)
       })
   }
   // componentDidUpdate(){
@@ -23,7 +39,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <h3>hello?</h3>
+        <UserList githubData={this.state.myGithubData} followerData={this.followerData}></UserList>
       </div>
     );
 
