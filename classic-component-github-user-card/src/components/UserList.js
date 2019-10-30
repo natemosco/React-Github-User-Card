@@ -10,7 +10,7 @@ export default class UserList extends Component {
         return (
             <div>
                 <UserCard user={this.props.myGithubData}></UserCard>
-                {this.props.followerData.map((user) => <UserCard user={user}></UserCard>)}
+                {this.props.followerData.map((user) => <UserCard user={user} key={Date.now()}></UserCard>)}
             </div>
         )
     }

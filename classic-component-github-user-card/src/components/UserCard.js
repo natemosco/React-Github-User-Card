@@ -3,17 +3,17 @@ import React from 'react'
 export default function UserCard({ user }) {
     return (
         <div className="card">
-            <img src={avatar_url} />
+            <img src={user.avatar_url} />
             <div className="card-info">
-                <h3 className="name">{name}</h3>
-                <p className="username">{login}</p>
-                <p>Location: {location}</p>
+                <h3 className="name">{user.name}</h3>
+                <p className="username">{user.login}</p>
+                <p>Location: {user.location}</p>
                 <p>Profile:
-                <a href={html_url}>{html_url}</a>
+                <a href={user.html_url}>{user.html_url}</a>
                 </p>
-                <p>Followers: {followers}</p>
-                <p>Following: {following}</p>
-                <p>Bio: {bio}</p>
+                <p>Followers: {user.followers}</p>
+                <p>Following: {user.following}</p>
+                <p>Bio: {user.bio}</p>
             </div>
         </div>
     )

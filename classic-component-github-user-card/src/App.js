@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import axios from "axios";
-import UserCard from "./components/UserList";
+import UserList from "./components/UserList";
 
 class App extends React.Component {
   state = {
@@ -15,15 +15,16 @@ class App extends React.Component {
       .then(res => {
         console.log(res, "res from initial axios request")
         this.setState({
-          myGithubData: [res.data]
+          myGithubData: res.data
         });
         axios
           .get(res.data.followers_url)
           .then(res => {
             console.log("followersURL response", res)
             this.setState({
-              followerData: [res.data]
+              followerData: res.data
             });
+            console.log(this.state)
           })
           .catch(err => {
             console.log("error from followersURL", err)
@@ -39,7 +40,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <UserList githubData={this.state.myGithubData} followerData={this.followerData}></UserList>
+        <UserList myGithubData={this.state.myGithubData} followerData={this.state.followerData}></UserList>
       </div>
     );
 
